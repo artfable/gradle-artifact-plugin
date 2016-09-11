@@ -2,18 +2,23 @@ group 'org.github.artfable.gradle'
 version '0.0.1'
 
 buildscript {
-    ext.kotlin_version = '1.0.3'
+    ext {
+        kotlin_version = '1.0.3'
+        bintray_version = '1.7.1'
+    }
 
     repositories {
-        mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_version"
     }
 }
 
 apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
 repositories {
     jcenter()
@@ -23,4 +28,50 @@ dependencies {
     compile localGroovy()
     compile gradleApi()
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name "MIT"
+            url "https://github.com/artfable/gradle-artifact-plugin/blob/master/LICENSE"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "artfable"
+            name "Artem Veselov"
+            email "art-fable@mail.ru"
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'Simple plugin that adds two tasks for make source an javadoc jar ')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.ext.bintrayUser : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayKey') ? project.ext.bintrayKey : System.getenv('BINTRAY_KEY')
+    publications = ['mavenJava']
+    pkg {
+        repo = 'gradle-plugins'
+        name = 'gradle-artifact-plugin'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/artfable/gradle-resource-plugin.git'
+        version {
+            attributes = ['gradle-plugin': 'artfable.artifact:com.github.artfable.gradle:gradle-artifact-plugin']
+        }
+    }
 }
