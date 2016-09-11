@@ -1,4 +1,4 @@
-group 'org.github.artfable.gradle'
+group 'com.github.artfable.gradle'
 version '0.0.1'
 
 buildscript {
@@ -65,6 +65,7 @@ bintray {
     user = project.hasProperty('bintrayUser') ? project.ext.bintrayUser : System.getenv('BINTRAY_USER')
     key = project.hasProperty('bintrayKey') ? project.ext.bintrayKey : System.getenv('BINTRAY_KEY')
     publications = ['mavenJava']
+    override = true
     pkg {
         repo = 'gradle-plugins'
         name = 'gradle-artifact-plugin'
