@@ -1,19 +1,19 @@
 # Gradle Artifact Plugin
-(version: 0.0.1)
+(version: 0.0.2)
 
 ## Overview
-Simple plugin that adds two tasks for make source an javadoc jar
+Simple plugin that adds two tasks for making source and javadoc jar
 
 ## Install
 ```groovy
 buildscript {
     repositories {
         maven {
-            url 'http://dl.bintray.com/artfable/gradle-plugins'
+            url 'https://artfable.jfrog.io/artifactory/default-maven-local'
         }
     }
     dependencies {
-        classpath "com.github.artfable.gradle:gradle-artifact-plugin:0.0.1"
+        classpath "com.artfable.gradle:gradle-artifact-plugin:0.0.2"
     }
 }
 
