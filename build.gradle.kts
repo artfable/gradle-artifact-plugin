@@ -12,7 +12,7 @@ buildscript {
 
 plugins {
     java
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.5.21"
     id("com.jfrog.artifactory") version "4.24.14"
     `maven-publish`
 }
