@@ -5,19 +5,17 @@
 Simple plugin that adds two tasks for making source and javadoc jar
 
 ## Install
-```groovy
+```kotlin
 buildscript {
     repositories {
-        maven {
-            url 'https://artfable.jfrog.io/artifactory/default-maven-local'
-        }
+        maven(url = "https://artfable.jfrog.io/artifactory/default-maven-local")
     }
     dependencies {
-        classpath "com.artfable.gradle:gradle-artifact-plugin:0.0.2"
+        classpath("com.artfable.gradle:gradle-artifact-plugin:0.0.2")
     }
 }
 
-apply plugin: 'artfable.artifact'
+apply(plugin = "artfable.artifact")
 ```
 
 ## Usage
