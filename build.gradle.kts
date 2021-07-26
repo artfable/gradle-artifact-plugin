@@ -1,5 +1,5 @@
 group = "com.artfable.gradle"
-version = "0.0.2"
+version = "0.0.3"
 
 buildscript {
     repositories {
@@ -12,7 +12,7 @@ buildscript {
 
 plugins {
     java
-    kotlin("jvm") version "1.5.21"
+    `kotlin-dsl`
     id("com.jfrog.artifactory") version "4.24.14"
     `maven-publish`
 }
@@ -23,8 +23,6 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation(gradleApi())
-    implementation(localGroovy())
 }
 
 tasks {
