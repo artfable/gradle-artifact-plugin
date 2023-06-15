@@ -1,6 +1,8 @@
 # Gradle Artifact Plugin
 (version: 0.0.3)
 
+**Note! Moved to:** [GitLab](https://gitlab.com/artfable-public/gradle-plugins/gradle-artifact-plugin)
+
 ## Overview
 Simple plugin that adds two tasks for making source and javadoc jar
 
